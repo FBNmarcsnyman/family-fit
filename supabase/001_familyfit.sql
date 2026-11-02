@@ -70,7 +70,8 @@ grant select on familyfit.members, familyfit.docs, familyfit.app to authenticate
 grant execute on function familyfit.my_role(), familyfit.my_who() to authenticated;
 
 -- Where a kid may save. Their own log days and settings, plus the family's shared calendar,
--- invites and shopping list. A kid may only delete calendar items and invites they made.
+-- invites and shopping list, and the house page for his dinner wish and calendar suggestions only
+-- (see kid_guard). A kid may only delete calendar items and invites they made.
 create or replace function familyfit.kid_may(p_path text, p_who text, p_delete boolean, p_old jsonb)
 returns boolean language plpgsql immutable set search_path = '' as $$
 begin
@@ -82,7 +83,8 @@ begin
     or p_path = 'settings/prefs_' || p_who
     or p_path like 'events/%'
     or p_path like 'invites/%'
-    or p_path = 'family/shopping';
+    or p_path = 'family/shopping'
+    or p_path = 'family/staff';
 end $$;
 
 -- What a kid's save may change. Anything only a parent decides is put back the way it was:
@@ -108,6 +110,29 @@ begin
     foreach k in array array['xbRate', 'xbBase', 'xbMax', 'moneyMax', 'wkPts', 'jarPct', 'ledger', 'kid', 'hsMile'] loop
       if old ? k then res := jsonb_set(res, array[k], old->k); else res := res - k; end if;
     end loop;
+    return res;
+  end if;
+
+  -- The house page: a kid's save keeps everything as stored, except his own dinner wish for the
+  -- week and any new calendar suggestions he sends. He can't change or remove anyone else's.
+  if p_path = 'family/staff' then
+    res := old;
+    foreach k in array array['wish', 'wishWk'] loop
+      if jsonb_typeof(p_new->k) = 'object' and (p_new->k) ? p_who then
+        res := jsonb_set(res, array[k], (case when jsonb_typeof(old->k) = 'object' then old->k else '{}'::jsonb end) || jsonb_build_object(p_who, p_new->k->p_who));
+      end if;
+    end loop;
+    oarr := case when jsonb_typeof(old->'suggest') = 'array' then old->'suggest' else '[]'::jsonb end;
+    narr := case when jsonb_typeof(p_new->'suggest') = 'array' then p_new->'suggest' else '[]'::jsonb end;
+    outarr := oarr;
+    select coalesce(array_agg(x->>'id'), '{}') into ids from jsonb_array_elements(oarr) x;
+    for e in select * from jsonb_array_elements(narr) loop
+      if e->>'by' = p_who and coalesce(e->>'id', '') <> '' and not ((e->>'id') = any (ids)) then
+        outarr := outarr || jsonb_build_array(e);
+        ids := ids || (e->>'id');
+      end if;
+    end loop;
+    if old ? 'suggest' or jsonb_array_length(outarr) > 0 then res := jsonb_set(res, '{suggest}', outarr); end if;
     return res;
   end if;
 

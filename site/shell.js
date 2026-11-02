@@ -10,7 +10,8 @@
   // ---------- settings ----------
   // The publishable key is meant to be public. It can't read anything by itself: every family
   // function checks for a signed-in family member.
-  var DEV = location.port === '5298';
+  // A local test copy (ports 5290 to 5299) talks to a pretend server instead of Supabase.
+  var DEV = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /^529\d$/.test(location.port);
   var SB = DEV ? location.origin + '/__sb' : 'https://kyosepbdxjwugunylvyo.supabase.co';
   var KEY = DEV ? 'dev' : 'sb_publishable_aF-RQDFSinN2i1sGyjG3gg_DqA0x6TI';
   // Logins are first names. Supabase wants an email address, so each name gets this made-up ending,
