@@ -1,0 +1,46 @@
+/* The front door: the opening screen, sign-in, the Holeshot window and small notices.
+   The app's own screens bring their own styles once someone has signed in. */
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#E8E9EC;color:#15161B}
+img{max-width:100%}
+[hidden]:not([hidden=until-found i]){display:none!important}
+*{box-sizing:border-box}
+
+.ffs-screen{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:16px}
+.ffs-card{width:100%;max-width:360px;background:#fff;border-radius:24px;padding:24px 20px;display:grid;gap:10px;box-shadow:0 1px 2px rgba(20,22,30,.05),0 10px 24px rgba(20,22,30,.06)}
+.ffs-center{justify-items:center;text-align:center}
+.ffs-logo{width:72px;height:72px;border-radius:18px;justify-self:center}
+.ffs-title{margin:0;font-size:26px;font-weight:800;text-align:center;letter-spacing:-.01em}
+.ffs-sub{margin:0;color:#5C606B;font-size:15px}
+.ffs-label{font-weight:700;font-size:14px;margin-top:4px}
+.ffs-input{width:100%;min-height:52px;border:2px solid #DFE1E6;border-radius:14px;padding:0 14px;font:inherit;font-size:18px;background:#fff;color:inherit}
+.ffs-input:focus{outline:none;border-color:#E9501C}
+.ffs-btn{min-height:56px;border:0;border-radius:999px;background:#E9501C;color:#fff;font:inherit;font-size:18px;font-weight:800;cursor:pointer;margin-top:6px}
+.ffs-btn:disabled{opacity:.6}
+.ffs-btn.ffs-sec{background:#fff;color:#15161B;border:2px solid #DFE1E6}
+.ffs-err{margin:0;min-height:20px;color:#9A1F1F;font-weight:700;font-size:14px;text-align:center}
+.ffs-small{margin:0;color:#5C606B;font-size:13px;text-align:center}
+.ffs-known{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ffs-known button{min-height:52px;border:2px solid #DFE1E6;border-radius:14px;background:#fff;font:inherit;font-size:17px;font-weight:800;cursor:pointer;color:inherit}
+.ffs-known button[aria-pressed="true"]{border-color:#E9501C;background:#FFE6DA}
+
+/* Holeshot inside the app */
+.ffs-hole{position:fixed;inset:0;z-index:1000;background:#101116;display:flex;flex-direction:column}
+.ffs-holebar{display:flex;align-items:center;gap:10px;padding:calc(6px + env(safe-area-inset-top,0px)) 10px 6px;background:#101116;color:#fff}
+.ffs-holebar button{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:#fff;color:#15161B;font:inherit;font-size:15px;font-weight:800;cursor:pointer}
+.ffs-holebar a{color:#C8F031;font-size:13px;font-weight:700;margin-left:auto}
+.ffs-hole iframe{flex:1;width:100%;border:0;background:#fff}
+
+/* Small notices along the bottom: saved offline, new version ready */
+.ffs-toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:900;display:flex;align-items:center;gap:10px;max-width:calc(100% - 32px);padding:8px 8px 8px 16px;border-radius:999px;background:#15161B;color:#fff;font-size:14px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.ffs-toast button{min-height:36px;padding:0 14px;border:0;border-radius:999px;background:#E9501C;color:#fff;font:inherit;font-weight:800;cursor:pointer}
+
+/* Account card, placed inside the app's settings */
+.ffs-acct{display:grid;gap:8px}
+.ffs-acct .ffs-row{display:flex;gap:8px;flex-wrap:wrap}
+.ffs-acct .ffs-row>*{flex:1 1 140px}
+.ffs-acct input{width:100%;min-height:48px;border:2px solid #DFE1E6;border-radius:14px;padding:0 12px;font:inherit;font-size:16px}
+.ffs-acct button{min-height:48px;border:0;border-radius:999px;font:inherit;font-weight:800;cursor:pointer;background:#E9501C;color:#fff;padding:0 16px}
+.ffs-acct button.ffs-sec{background:#fff;color:#15161B;border:2px solid #DFE1E6}
+.ffs-acct p{margin:0}
