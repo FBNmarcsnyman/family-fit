@@ -6,7 +6,7 @@ Marc is not a programmer. Explain things in plain English and do the technical w
 
 ## This repository is public
 
-It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. Never put surnames, school names, email addresses, staff names, health details, timetables or a child's marks into anything here, including comments and commit messages. `tools/build.mjs` refuses to build if it finds the obvious ones.
+It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. Never put surnames, school names, email addresses, staff names, health details, timetables or a child's marks into anything here, including comments and commit messages. `tools/build.mjs` refuses to build if it finds the obvious ones. This folder's git author is set to "Family Fit" with the GitHub no-reply address (`git config user.name` / `user.email` in this repo only), because a commit's author is public too. Keep it that way.
 
 ## How it fits together
 
