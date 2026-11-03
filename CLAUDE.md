@@ -25,6 +25,7 @@ It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. 
   - Gold is `wkPts` and pays all of `moneyMax`. Silver is 80% of the points and pays 70%. Bronze is 60% and pays 40%. Below Bronze nothing is paid.
   - The boss bonus is at Gold.
   - At Gold he picks a prize from the parents' list (`prizes` in the parent settings). His pick (`gold`) and the cheers he has seen (`seenPod`) sit in his own settings, which kids may save.
+  - A week below Bronze can be saved by a comeback challenge done the week after, if he got at least halfway to Bronze. It is saved as `q.cb` on the day he says he did it (its name in `cbn`), so it always saves the week before that day. Only a parent gives it a 2, and then that week counts as Bronze. It earns no points of its own and isn't one of a day's quests. The challenges are `comebacks` in the parent settings.
   - The brothers' challenge is both boys on Silver.
   - Levels run to 15 000 points.
 - **Saves the screen makes by itself** (a level up seen, a cheer shown) wait until that person's saved settings have arrived. A save from the starting settings would replace the real ones: a device that never had a document has no base for `merge3`, so its copy wins.
