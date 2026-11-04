@@ -17,9 +17,12 @@ revoke all on schema familyfit from public, anon, authenticated;
 create table if not exists familyfit.members (
   user_id uuid primary key references auth.users (id) on delete cascade,
   who text not null unique check (who ~ '^[a-z]{2,20}$'),
-  role text not null check (role in ('parent', 'kid')),
+  role text not null check (role in ('parent', 'kid', 'screen')),
   created_at timestamptz not null default now()
 );
+-- screen: a view-only login for a TV, which can read but never save.
+alter table familyfit.members drop constraint if exists members_role_check;
+alter table familyfit.members add constraint members_role_check check (role in ('parent', 'kid', 'screen'));
 
 -- Every saved thing is one document at a path such as log_name/2026-11-02 or settings/prefs_name,
 -- the same paths the first version used. rev goes up by one on every change, so a device only
@@ -266,6 +269,11 @@ begin
   select * into cur from familyfit.docs where path = p_path;
   had := found;
   v_old := case when had and not cur.deleted then cur.data else null end;
+
+  -- A screen login (the lounge TV) only shows things and can never save.
+  if v_role = 'screen' then
+    return jsonb_build_object('ok', false, 'reason', 'denied', 'rev', case when had then cur.rev else 0 end, 'data', v_old);
+  end if;
 
   if p_base is not null and had and cur.rev <> p_base then
     return jsonb_build_object('ok', false, 'reason', 'stale', 'rev', cur.rev, 'data', v_old);

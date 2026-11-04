@@ -36,6 +36,11 @@ It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. 
   - A boy's Today opens with this week's points ring and next medal, then a "Now" card with the jobs of the earliest time-of-day group that still has some left, ticked right there. A finished group stays for a moment so the next tap doesn't land on a job that slid into its place.
   - Then come the week's days with a dot each, and tiles for Xbox and money.
   - The tabs are a floating bar with line icons.
+- **TV home** (4 November 2026):
+  - A read-only page for the lounge TV. It shows the clock, the next event, a column for each boy (the jobs left in this part of the day, his next medal and points, and his Xbox minutes), today's remaining and tomorrow's calendar, and a strip with things to check, dog duty, Holeshot stages and the brothers' challenge.
+  - It shows no money and no messes.
+  - It opens for a `screen` login (`members.role = 'screen'`), which `ff_put` always refuses, or on any signed-in device with `#tv` on the address.
+  - It is sized in vh/vw so it fits any TV, dims from 21:00 to 06:00, shifts a few pixels every 3 minutes against burn-in, asks for a screen wake lock and takes app updates by itself.
 - **Saves the screen makes by itself** (a level up seen, a cheer shown) wait until that person's saved settings have arrived. A save from the starting settings would replace the real ones: a device that never had a document has no base for `merge3`, so its copy wins.
 - **Holeshot inside the app**: a full-screen frame of `/holeshot/` with a back button. On a device that has never linked Holeshot, it asks for the family code once.
 - **Logins** are first names with a made-up ending (`@familyfit.invalid`). There's no email reset: Marc asks Claude, and the private setup script gives a new password.
