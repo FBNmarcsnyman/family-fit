@@ -1,6 +1,6 @@
 // Keeps the front door on the device so Family Fit opens without signal. The app's own screens and the
 // family's data are kept on the device by shell.js, never here. tools/build.mjs fills in the version and file list.
-const VERSION = '78dfd22693';
+const VERSION = '84d9da6d95';
 const FILES = ["./","img/hero-jump.webp","img/icon-180.png","img/icon-192.png","img/icon-512.png","img/icon-maskable-512.png","manifest.webmanifest","shell.css","shell.js"];
 const CACHE = 'family-fit-' + VERSION;
 const FONTS = 'family-fit-fonts';
