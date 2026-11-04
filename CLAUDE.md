@@ -29,6 +29,13 @@ It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. 
   - Each day a boy is marked away or sick (an `away` calendar item with him in `w`) takes a seventh off all three steps that week, rounded to 10, but not off the money. Away the whole week means no race and no boss bonus.
   - The brothers' challenge is both boys on Silver.
   - Levels run to 15 000 points.
+- **Day and night looks** (4 November 2026):
+  - Each person picks Day, Night, By time or Match phone (`mode` in their settings: light, dark, time, auto).
+  - By time switches at `nightAt` and back at `dayAt` (18:00 and 06:00 to start) and is checked once a minute. The boys start on By time.
+  - Night is deep navy.
+  - A boy's Today opens with this week's points ring and next medal, then a "Now" card with the jobs of the earliest time-of-day group that still has some left, ticked right there. A finished group stays for a moment so the next tap doesn't land on a job that slid into its place.
+  - Then come the week's days with a dot each, and tiles for Xbox and money.
+  - The tabs are a floating bar with line icons.
 - **Saves the screen makes by itself** (a level up seen, a cheer shown) wait until that person's saved settings have arrived. A save from the starting settings would replace the real ones: a device that never had a document has no base for `merge3`, so its copy wins.
 - **Holeshot inside the app**: a full-screen frame of `/holeshot/` with a back button. On a device that has never linked Holeshot, it asks for the family code once.
 - **Logins** are first names with a made-up ending (`@familyfit.invalid`). There's no email reset: Marc asks Claude, and the private setup script gives a new password.
