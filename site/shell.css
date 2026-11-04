@@ -1,6 +1,6 @@
 /* The front door: the opening screen, sign-in, the Holeshot window and small notices.
    The app's own screens bring their own styles once someone has signed in. */
-:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{color-scheme:light;box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;padding:0;font:14px "Lexend","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;background:#E8E9EC;color:#15161B}
 img{max-width:100%}
@@ -57,4 +57,23 @@ img{max-width:100%}
   .ffs-btn.ffs-sec,.ffs-known button{background:#24262E;border-color:#2E3039;color:#F3F4F6}
   .ffs-known button[aria-pressed="true"]{border-color:#FF7A45;background:#3A2117}
   .ffs-err{color:#FF8078}
+}
+
+/* While it opens: grey shapes where the Today cards will be, instead of a spinner */
+.ffs-skel{place-items:start center;align-content:start;gap:14px;padding:16px 16px 0}
+.ffs-sk{width:100%;max-width:520px;display:grid;gap:14px}
+.ffs-sk i,.ffs-sk-nav{display:block;border-radius:22px;background:linear-gradient(90deg,#DCDFE6 0%,#EEF0F4 40%,#DCDFE6 80%);background-size:300% 100%;animation:ffs-shine 1.4s linear infinite}
+.ffs-sk-row{display:flex;justify-content:space-between;gap:10px}
+.ffs-sk-pill{width:120px;height:44px}.ffs-sk-pill.ffs-sk-s{width:84px}
+.ffs-sk-title{width:62%;height:36px;margin-top:8px}
+.ffs-sk-line{width:44%;height:18px}
+.ffs-sk-card{height:220px;border-radius:28px!important}
+.ffs-sk-card.ffs-sk-short{height:96px}
+.ffs-sk-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ffs-sk-two i{height:96px}
+.ffs-sk-msg{width:100%;max-width:520px;text-align:center;font-size:13px}
+.ffs-sk-nav{position:fixed;left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;height:64px;border-radius:999px}
+@keyframes ffs-shine{to{background-position:-150% 0}}
+@media (prefers-reduced-motion:reduce){.ffs-sk i,.ffs-sk-nav{animation:none}}
+@media (prefers-color-scheme: dark){
+  .ffs-sk i,.ffs-sk-nav{background:linear-gradient(90deg,#161D36 0%,#222B4A 40%,#161D36 80%);background-size:300% 100%}
 }

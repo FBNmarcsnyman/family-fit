@@ -41,6 +41,14 @@ It is served by GitHub Pages at `/family-fit/` on the same address as Holeshot. 
   - It shows no money and no messes.
   - It opens for a `screen` login (`members.role = 'screen'`), which `ff_put` always refuses, or on any signed-in device with `#tv` on the address.
   - It is sized in vh/vw so it fits any TV, dims from 21:00 to 06:00, shifts a few pixels every 3 minutes against burn-in, asks for a screen wake lock and takes app updates by itself.
+- **Finishing touches** (4 November 2026):
+  - **Front door:** while it opens, it shows grey placeholder shapes of Today instead of a spinner. It pads for notches and home bars on all four sides.
+  - **Keys:** Ctrl/Cmd K or "/" opens a "Go to" menu; 1 to 5 switch tabs, C opens the calendar, M opens Manage (parents) and "," opens Settings.
+  - **Tab changes** use View Transitions, and the state changes straight away.
+  - **The back gesture** steps back through tabs and closes an open sheet first. Each tab and sheet is a history entry; closing a sheet replaces its entry, so a tab opened from the sheet takes its place.
+  - **Pop-ups** are bottom sheets on phones, can be pulled down to close, and slide in with an interruptible transition.
+  - **Double taps:** a second tap on the same spot within 350 ms is ignored, and paying a week checks `paidWeek` first.
+  - **Looks:** numbers are tabular, headings are balanced, cards get squircle corners where the browser supports them, and photos blur up.
 - **Saves the screen makes by itself** (a level up seen, a cheer shown) wait until that person's saved settings have arrived. A save from the starting settings would replace the real ones: a device that never had a document has no base for `merge3`, so its copy wins.
 - **Holeshot inside the app**: a full-screen frame of `/holeshot/` with a back button. On a device that has never linked Holeshot, it asks for the family code once.
 - **Logins** are first names with a made-up ending (`@familyfit.invalid`). There's no email reset: Marc asks Claude, and the private setup script gives a new password.
