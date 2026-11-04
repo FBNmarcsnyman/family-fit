@@ -136,6 +136,16 @@ begin
     return res;
   end if;
 
+  -- Calendar items: only a parent marks someone away or sick (it lowers a boy's weekly targets) or
+  -- adds a holiday (it opens Xbox on a weekday). A kid's save can't add either, and an item that
+  -- already is one stays as it was.
+  if starts_with(p_path, 'events/') then
+    if old ? 'away' or old->>'kind' = 'holiday' then return old; end if;
+    res := res - 'away';
+    if res->>'kind' = 'holiday' then res := res - 'kind'; end if;
+    return res;
+  end if;
+
   if not starts_with(p_path, 'log_' || p_who || '/') then
     return res;
   end if;
