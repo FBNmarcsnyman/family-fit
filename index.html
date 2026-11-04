@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Family Fit">
+<meta name="theme-color" content="#E9501C">
+<title>Family Fit</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Lexend:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="shell.css">
+</head>
+<body>
+<div id="ff-boot" class="ffs-screen ffs-skel" aria-busy="true">
+  <div class="ffs-sk" aria-hidden="true">
+    <div class="ffs-sk-row"><i class="ffs-sk-pill"></i><i class="ffs-sk-pill ffs-sk-s"></i><i class="ffs-sk-pill ffs-sk-s"></i></div>
+    <i class="ffs-sk-title"></i>
+    <i class="ffs-sk-line"></i>
+    <i class="ffs-sk-card"></i>
+    <div class="ffs-sk-two"><i></i><i></i></div>
+    <i class="ffs-sk-card ffs-sk-short"></i>
+  </div>
+  <p class="ffs-sub ffs-sk-msg" id="ff-boot-msg" aria-live="polite">Opening…</p>
+  <i class="ffs-sk-nav" aria-hidden="true"></i>
+</div>
+
+<div id="ff-login" class="ffs-screen" hidden>
+  <form class="ffs-card" id="ff-login-form" autocomplete="on">
+    <img class="ffs-logo" src="img/icon-192.png" alt="">
+    <p class="ffs-title">Family Fit</p>
+    <div id="ff-known" class="ffs-known" hidden></div>
+    <label class="ffs-label" for="ff-name">Your name</label>
+    <input class="ffs-input" id="ff-name" name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+    <label class="ffs-label" for="ff-pass">Password</label>
+    <input class="ffs-input" id="ff-pass" name="password" type="password" autocomplete="current-password" required>
+    <button class="ffs-btn" id="ff-go" type="submit">Sign in</button>
+    <p class="ffs-err" id="ff-err" role="alert"></p>
+    <p class="ffs-small">Forgotten your password? Ask Mom or Dad.</p>
+  </form>
+</div>
+
+<script src="shell.js"></script>
+</body>
+</html>
