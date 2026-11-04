@@ -34,6 +34,8 @@ try {
     if (run(root, 'status', '--porcelain').trim()) run(root, 'commit', '-m', `${what}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`);
     run(root, 'push', 'origin', 'HEAD:main');
     if (!hasPages) { git('init'); git('checkout', '-b', 'gh-pages'); git('remote', 'add', 'origin', REPO); }
+    // A commit's author is public, so the website's commits use this repository's neutral author, not the computer's.
+    for (const k of ['user.name', 'user.email']) git('config', k, run(root, 'config', '--get', k).trim());
     for (const f of readdirSync(work)) if (f !== '.git') rmSync(path.join(work, f), { recursive: true, force: true });
     cpSync(dist, work, { recursive: true });
     git('add', '-A');

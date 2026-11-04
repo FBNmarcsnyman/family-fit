@@ -412,12 +412,15 @@
     el.appendChild(ver);
     save.addEventListener('click', function () {
       var v = pw.value;
-      if (v.length < 6) { msg.textContent = 'Use at least 6 letters or numbers.'; return; }
+      // The server's rules: a capital, a small letter, a number and a symbol, and not a password that has leaked.
+      var rules = 'Use a capital, a small letter, a number and a symbol, like Tiger-comet42.';
+      if (v.length < 8 || !/[a-z]/.test(v) || !/[A-Z]/.test(v) || !/[0-9]/.test(v) || !/[^A-Za-z0-9]/.test(v)) { msg.textContent = rules; return; }
       save.disabled = true; msg.textContent = 'Saving...';
       token().then(function (t) { return authCall('user', { password: v }, t); }).then(function (r) {
         save.disabled = false;
         if (r.status === 200) { pw.value = ''; msg.textContent = 'Password changed. Use the new one next time.'; }
-        else msg.textContent = r.body && r.body.msg ? r.body.msg : 'That didn\'t work. Try a longer password.';
+        else if (r.body && r.body.error_code === 'weak_password') msg.textContent = 'That one is too easy to guess. ' + rules;
+        else msg.textContent = 'That didn\'t work. ' + rules;
       }, function () { save.disabled = false; msg.textContent = 'No signal. Try again when you\'re online.'; });
     });
     out.addEventListener('click', function () {
