@@ -430,7 +430,9 @@
   }
 
   // ---------- starting up ----------
-  var FF = window.FF = { me: readJSON(ME_KEY), holeshotSync: holeshotSync, openHoleshot: openHoleshot, account: account, version: '', online: function () { return !!lastPull && Date.now() - lastPull < PULL_EVERY * 3; } };
+  // holeshotReport: the boys' Holeshot results for the Boys page. The server answers a parent only.
+  var FF = window.FF = { me: readJSON(ME_KEY), holeshotSync: holeshotSync, openHoleshot: openHoleshot, account: account, version: '', online: function () { return !!lastPull && Date.now() - lastPull < PULL_EVERY * 3; },
+    holeshotReport: function (days) { return rpc('ff_holeshot_report', { p_days: days || 30 }); } };
 
   function bootMsg(t) { $('ff-boot-msg').textContent = t; }
   function showLogin(err) {
