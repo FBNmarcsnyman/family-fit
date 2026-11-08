@@ -2,7 +2,7 @@
    The app's own screens bring their own styles once someone has signed in. */
 :root{color-scheme:light;box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;padding:0;font:14px "Inter","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;background:#E8E9EC;color:#15161B}
+body{margin:0;padding:0;font:14px "Inter","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;background:#EEF3F8;color:#13213B}
 img{max-width:100%}
 [hidden]:not([hidden=until-found i]){display:none!important}
 *{box-sizing:border-box}
@@ -15,15 +15,15 @@ img{max-width:100%}
 .ffs-sub{margin:0;color:#5C606B;font-size:15px}
 .ffs-label{font-weight:700;font-size:14px;margin-top:4px}
 .ffs-input{width:100%;min-height:52px;border:2px solid #DFE1E6;border-radius:14px;padding:0 14px;font:inherit;font-size:18px;background:#fff;color:inherit}
-.ffs-input:focus{outline:none;border-color:#E9501C}
-.ffs-btn{min-height:56px;border:0;border-radius:999px;background:#C2410C;color:#fff;font:inherit;font-size:18px;font-weight:800;cursor:pointer;margin-top:6px}
+.ffs-input:focus{outline:none;border-color:#3D6BE0}
+.ffs-btn{min-height:56px;border:0;border-radius:999px;background:#3D6BE0;color:#fff;font:inherit;font-size:18px;font-weight:800;cursor:pointer;margin-top:6px}
 .ffs-btn:disabled{opacity:.6}
 .ffs-btn.ffs-sec{background:#fff;color:#15161B;border:2px solid #DFE1E6}
 .ffs-err{margin:0;min-height:20px;color:#9A1F1F;font-weight:700;font-size:14px;text-align:center}
 .ffs-small{margin:0;color:#5C606B;font-size:13px;text-align:center}
 .ffs-known{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ffs-known button{min-height:52px;border:2px solid #DFE1E6;border-radius:14px;background:#fff;font:inherit;font-size:17px;font-weight:800;cursor:pointer;color:inherit}
-.ffs-known button[aria-pressed="true"]{border-color:#E9501C;background:#FFE6DA}
+.ffs-known button[aria-pressed="true"]{border-color:#3D6BE0;background:#E6EDFC}
 
 /* Holeshot inside the app */
 .ffs-hole{position:fixed;inset:0;z-index:1000;background:#101116;display:flex;flex-direction:column}
@@ -34,14 +34,14 @@ img{max-width:100%}
 
 /* Small notices along the bottom: saved offline, new version ready */
 .ffs-toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));margin-inline:auto;width:fit-content;max-width:488px;z-index:900;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px;background:#15161B;color:#fff;font-size:14px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.ffs-toast button{flex:none;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:#C2410C;color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.ffs-toast button{flex:none;min-height:44px;padding:0 16px;border:0;border-radius:999px;background:#3D6BE0;color:#fff;font:inherit;font-weight:800;cursor:pointer}
 
 /* Account card, placed inside the app's settings */
 .ffs-acct{display:grid;gap:8px}
 .ffs-acct .ffs-row{display:flex;gap:8px;flex-wrap:wrap}
 .ffs-acct .ffs-row>*{flex:1 1 140px}
 .ffs-acct input{width:100%;min-height:48px;border:2px solid var(--line,#DFE1E6);border-radius:14px;padding:0 12px;font:inherit;font-size:16px;background:var(--surface,#fff);color:var(--fg,#15161B)}
-.ffs-acct button{min-height:48px;border:0;border-radius:999px;font:inherit;font-weight:800;cursor:pointer;background:var(--peach-e,#C2410C);color:#fff;padding:0 16px}
+.ffs-acct button{min-height:48px;border:0;border-radius:999px;font:inherit;font-weight:800;cursor:pointer;background:var(--peach-e,#3D6BE0);color:#fff;padding:0 16px}
 .ffs-acct button.ffs-sec{background:var(--surface,#fff);color:var(--fg,#15161B);border:2px solid var(--line,#DFE1E6)}
 :root[data-theme="dark"] .ffs-acct button:not(.ffs-sec){color:#0F1014}
 .ffs-acct p{margin:0}
